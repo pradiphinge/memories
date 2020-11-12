@@ -1,17 +1,21 @@
 import express from 'express';
 import cors from 'cors';
-
-import dotenv from 'dotenv'
+import morgan from 'morgan';
+import dotenv from 'dotenv';
 
 import connectDB from './db.js';
 import postRoutes from './routes/posts.js'
 
 const app = express();
-app.use('/posts', postRoutes);
+app.use('/api/v1/posts', postRoutes);
 
 dotenv.config();
 app.use(cors());
+app.use(express.json());
 
+if (process.env.NODE_ENVIRONMENT === 'development') {
+    app.use(morgan('dev'));
+}
 
 const PORT = process.env.PORT 
 connectDB()
