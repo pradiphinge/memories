@@ -7,10 +7,10 @@ import connectDB from './db.js';
 import postRoutes from './routes/posts.js'
 
 const app = express();
-app.use('/api/v1/posts', postRoutes);
 
 dotenv.config();
 app.use(cors());
+app.use('/api/v1/posts', postRoutes);
 app.use(express.json());
 
 if (process.env.NODE_ENVIRONMENT === 'development') {
