@@ -9,12 +9,13 @@ import postRoutes from './routes/posts.js'
 const app = express();
 
 dotenv.config();
+
 app.use(cors());
-app.use('/api/v1/posts', postRoutes);
 app.use(express.json());
+app.use('/api/v1/posts', postRoutes);
 
 if (process.env.NODE_ENVIRONMENT === 'development') {
-    app.use(morgan('dev'));
+    app.use(morgan('developmemt'));
 }
 
 const PORT = process.env.PORT 
